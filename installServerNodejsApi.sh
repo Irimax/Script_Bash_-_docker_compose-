@@ -53,9 +53,7 @@ fi
 
 # Create Git Ignore
 
-touch $REP.gitignore
-
-cat>.gitignore<<eof
+cat>$REP/.gitignore<<eof
 node_modules/
 target/
 #etc/

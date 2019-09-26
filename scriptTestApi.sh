@@ -14,30 +14,34 @@ fi
 
 # touch $REP/.env.dev
 
-# Define port .env
-
-portDefault="6000"
-
-echo -n "port number ?"
-read port
-
-if [ -z $port ]; then
-    echo -e "default port $portDefault"
-    cat>$REP/.env.dev<<eof
-PLATEFORM=DEV
-PORT=$portDefault
-DEBUG=true
-NODENAME=hostname
+cat>$REP/.gitignore<<eof
+node_modules/
+target/
+#etc/
+.config/
+.npm/
+dist/
+.idea/
+.sonar_lock
+.vscode
+debug.log
+all-logs.log
+coverage
+npm-debug.log*
+*.iml
+.DS_Store
+.npmrc
+src/app/auto-generated/
+.ts-node/
+ormconfig.json
+animco-engager.db
+docker/postgres/data
+# /.env
+.pm2/
+client/build/
+/.ash_history
+Zone de message
 eof
-else
-    echo -e "Ok the port is $port"
-    
-cat>$REP/.env.dev<<eof
-PLATEFORM=DEV
-PORT=$port
-DEBUG=true
-NODENAME=hostname
-eof
-fi
+
 
 # mv .env.dev $REP/
