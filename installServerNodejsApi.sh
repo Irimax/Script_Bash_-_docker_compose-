@@ -1,16 +1,16 @@
 #!/bin/bash
 source box.sh
 
-# Create Folder 
+# Create Folder
 
 echo -n "Name Directory Server ?"
 read REP
 
 if [ -d $REP ]; then
-    echo "Directory $REP already exists"
+    box echo -e "Directory $REP already exists" "green" "purple"
 else
     mkdir $REP
-    echo -e "Directory \033[32;1;5m$REP\033[0m create"
+    box echo -e "Directory $REP create" "green" "purple"
 fi
 
 # copy files to directory
@@ -21,9 +21,7 @@ box echo -e echo "app.js copy to directory $REP" "green" "purple"
 
 # create Files
 
-touch $REP/readme.mb 
-
-touch $REP/.env.dev
+touch $REP/readme.mb
 
 # Define port .env
 
@@ -34,7 +32,7 @@ read port
 
 if [ -z $port ]; then
     echo -e "default port $portDefault"
-    cat>.en.dev<<eof
+    cat>$REP/.env.dev<<eof
 PLATEFORM=DEV
 PORT=$portDefault
 DEBUG=true
@@ -43,7 +41,7 @@ eof
 else
     echo -e "Ok the port is $port"
     
-cat>.en.dev<<eof
+cat>$REP/.env.dev<<eof
 PLATEFORM=DEV
 PORT=$port
 DEBUG=true
@@ -52,9 +50,10 @@ eof
 fi
 
 
+
 # Create Git Ignore
 
-touch $REP/.gitignore
+touch $REP.gitignore
 
 cat>.gitignore<<eof
 node_modules/
@@ -99,7 +98,7 @@ while true; do
     read -p "do you want to create assets directory y/n ?" yn
     case $yn in
         [Yy]* ) mkdir $ASSETS  $ASSETS/css  $ASSETS/images  $ASSETS/script  $ASSETS/utils
-    echo "Directory created"; break;;
+        echo "Directory created"; break;;
         [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
@@ -109,7 +108,7 @@ while true; do
     read -p "do you want to create views directory y/n ?" yn
     case $yn in
         [Yy]* ) mkdir  $REP/src/views
-    echo "Directory created"; break;;
+        echo "Directory created"; break;;
         [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
@@ -131,13 +130,13 @@ npm i --save express-validator
 #identique
 npm i --save node-fetch
 #npm i --save superagent
-#npm i --save isomorphic-fetch 
+#npm i --save isomorphic-fetch
 
 while true; do
     read -p "do you want install body-parser y/n ?" yn
     case $yn in
         [Yy]* ) npm i body-parser
-    echo "body-parser installed"; break;;
+        echo "body-parser installed"; break;;
         [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
@@ -145,7 +144,7 @@ done
 
 # Install Eslint
 
-npm i --save-dev eslint 
+npm i --save-dev eslint
 node node_modules/eslint/bin/eslint.js --init
 
 cd ..
@@ -187,4 +186,4 @@ eof
 
 
 
-box echo -e "installation finished server \033[32;1;5m$REP\033[0m create" "green" "purple"
+box echo -e "installation finished server $REP create" "green" "purple"
