@@ -7,16 +7,16 @@ echo -n "Name Directory Server ?"
 read REP
 
 if [ -d $REP ]; then
-    box echo -e "Directory $REP already exists" "green" "purple"
+    box "Directory $REP already exists" "green" "purple"
 else
     mkdir $REP
-    box echo -e "Directory $REP create" "green" "purple"
+    box "Directory $REP create" "green" "purple"
 fi
 
 # copy files to directory
 
 cp app.js $REP
-box echo -e echo "app.js copy to directory $REP" "green" "purple"
+box "app.js copy to directory $REP" "green" "purple"
 
 
 # create Files
@@ -184,4 +184,4 @@ eof
 
 
 
-box echo -e "installation finished server $REP create" "green" "purple"
+box "installation finished server $REP create" "green" "purple"
